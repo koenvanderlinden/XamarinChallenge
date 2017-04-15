@@ -17,5 +17,14 @@ namespace CoolBreeze.Helpers
             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<WeatherInformation>(response);
             return result;
         }
+
+        public async static Task<WeatherInformation> GetCurrentConditionsAsync(double latitude, double longitude)
+        {
+            string url = $"http://traininglabservices.azurewebsites.net/api/weather/current?latitude={latitude}&longitude={longitude}&registrationCode={App.RegistrationCode}";
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync(url);
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<WeatherInformation>(response);
+            return result;
+        }
     }
 }

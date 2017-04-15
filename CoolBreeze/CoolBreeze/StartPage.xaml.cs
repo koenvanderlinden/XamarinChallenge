@@ -5,22 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace CoolBreeze
 {
-    public partial class MainPage : ContentPage
+    public partial class StartPage : TabbedPage
     {
-        public MainPage()
+        public StartPage()
         {
             InitializeComponent();
         }
 
         protected override void OnAppearing()
         {
-            this.BindingContext = App.ViewModel;
-            if (App.ViewModel.NeedsRefresh) App.ViewModel.RefreshCurrentConditionsAsync();
+            InitializeAppAsync();
             base.OnAppearing();
         }
 
+        private void InitializeAppAsync()
+        {
+            if (App.ViewModel == null) App.ViewModel = new MainViewModel();
+        }
     }
 }
