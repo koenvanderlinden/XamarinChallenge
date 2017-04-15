@@ -16,7 +16,7 @@ namespace CoolBreeze
         {
             InitializeComponent();
 
-            MainPage = new CoolBreeze.StartPage();
+            MainPage = new NavigationPage(new StartPage());
         }
 
         protected override void OnStart()
